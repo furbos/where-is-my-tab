@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+	<title>Where is my tab?</title>
+	<meta charset="utf-8">
+	<script src="global.js"></script>
+	<script src="popup.js"></script>
+	<style>
+	@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 400;
+		src: local('Open Sans'), local('OpenSans'), url(OpenSans-Normal.woff) format('woff');
+	}
+	
+	body {
+		font: 13px/22px 'Open Sans', arial, sans-serif;
+		margin: 0;
+		padding: 8px;
+		width: 260px;
+		font: 13px/22px 'Open Sans', arial, sans-serif;
+	}
+
+	input {
+		border: 1px solid #7ea0cd;
+		font-size: 100%;
+		padding: 4px;
+		width: 138px;
+		margin-right: 8px;
+		
+	}
+
+	input:focus {
+		outline: none;
+		border-color: #7c4790;
+		box-shadow: 0 0 6px #7ea0cd;
+	}
+
+	button, button:disabled:active, button:disabled:hover {
+		box-shadow: inset 0 1px 0 rgba(256, 256, 256, .75);
+		background-color: #c0c0c0;
+		border-color: #c0c0c0 #959595 #959595 #c0c0c0;
+		border-width: 1px;
+		border-style: solid;
+		color: #000;
+		text-shadow: 0 -1px 0 rgba(255, 255, 255, .5);
+		background-image: linear-gradient(to bottom, #f0f0f0 0, #c0c0c0 100%);
+		background-image: -webkit-linear-gradient(top, #f0f0f0 0, #c0c0c0 100%);
+		outline: 0;
+		font-weight: normal;
+		padding: 2px 8px 2px 8px;
+		margin: 0;
+		font: 13px/22px 'Open Sans', arial, sans-serif;
+	}
+	
+	button:hover {
+		box-shadow: 0 0 6px #c0c0c0;
+		background-image: -webkit-linear-gradient(to bottom, #c0c0c0 0, #c0c0c0 100%)
+	}
+	
+	button:active {
+		border-color: #959595 #c0c0c0 #959595 #c0c0c0;
+		box-shadow: inset 0 1px 4px rgba(0, 0, 0, .35), 0 1px 0 #fff;
+		background-image: linear-gradient(to bottom, #c0c0c0 0, #f0f0f0 100%);
+		background-image: -webkit-linear-gradient(top, #c0c0c0 0, #f0f0f0 100%);
+	}
+	
+	button:disabled, button:disabled:hover {
+		color: #a0a0a0;
+	}
+
+	strong {
+		color: #7c4790;
+	}
+	
+	a {
+		cursor: pointer
+	}
+	
+	.clear {
+		clear: both;
+	}
+	
+	#keywords {
+		width: 250px;
+		background-image: none;
+		background-position: 238px;
+		background-repeat: no-repeat;
+		margin: 5px 0 0 0;
+	}
+	
+	#results {
+		margin: 10px 0 0 0;
+		list-style: none;
+		padding: 0;
+	}
+	
+	#results li {
+		padding: 6px;
+		border-top: 1px solid #7ea0cd;
+	}
+	
+	#results li:first-child {
+		background-color: #fff;
+		border-top: 1px solid #fff;
+	}
+	
+	#results li:nth-child(2n) {
+		background-color: #f2f6fa;
+	}
+	
+	#results li:hover {
+		abackground-color: #f2f6fa;
+		cursor: pointer;
+		text-decoration: underline;
+	}
+	
+	#results li.hilight {
+		background-color: #c0c0c0;
+		color: #fff;
+	}
+	
+	#results li.hilight .url {
+		color: #fff;
+	}
+	
+	#results li .icon {
+		float: left;
+		width: 16px;
+		height: 16px;
+	}
+	
+	#results li .icon img {
+		width: 16px;
+		height: 16px;
+	}
+	
+	#results li .title {
+		margin-left: 22px;
+		line-height: 16px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: 32px;
+		position: relative;
+		top: -2px;
+	}
+	
+	#results li .url {
+		color: #a0a0a0;
+		font-size: smaller;
+		margin-left: 22px;
+		line-height: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: 28px;
+	}
+	
+	#results li span {
+		font-weight: bold;
+	}
+	
+	</style>
+</head>
+<body>
+	<strong>Search within open tabs:</strong><br><input type="text" name="keywords" id="keywords" tabindex="1" placeholder="type title or url" />
+	<ol id="results"></ol>
+</body>
+</html>

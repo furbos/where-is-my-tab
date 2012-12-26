@@ -1,0 +1,22 @@
+{
+	"name": "Where is my tab",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Search in open tabs.",
+
+	"icons": {
+		"19" : "icon16.png"
+	},
+
+	"browser_action": {
+		"default_icon" : "icon16.png",
+		"default_title": "Where is my tab",
+		"default_popup": "popup.html"
+	},
+
+	"permissions": [
+		"tabs"
+	],
+	
+	"content_security_policy": "script-src 'self'; object-src 'self'"
+}
