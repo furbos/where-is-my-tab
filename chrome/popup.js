@@ -18,7 +18,7 @@ function whereIsMyTabPopup()
 		this.mSelectedIndex = false;
 		
 		this.addListeners();
-		mThis.readOpenTabs();
+		this.readOpenTabs();
 	};
 	
 	
@@ -255,21 +255,17 @@ function whereIsMyTabPopup()
 	 */
 	this.goToTab = function(aTabId)
 	{
-		chrome.tabs.get(aTabId, function(aTab) 
+		chrome.tabs.get(aTabId, function(aTab)
 		{
 			if (aTab && !aTab.selected) {
 				chrome.tabs.update(aTabId, { selected: true });
 			}
 
-			chrome.windows.get(aTab.windowId, function(aWindow) 
+			chrome.windows.get(aTab.windowId, function(aWindow)
 			{
-				if (!window.focused) {
-					chrome.windows.update(aTab.windowId, { focused: true });
-				}
+				chrome.windows.update(aWindow.id, { focused: true });
 			});
 		});
-		
-		//window.close();
 	};
 }
 
