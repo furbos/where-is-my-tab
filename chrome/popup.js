@@ -252,7 +252,7 @@ function whereIsMyTabPopup()
 	 * @param string aUrl
 	 * @return string
 	 */
-	this.cleanUrl = function(aUrl) 
+	this.cleanUrl = function(aUrl)
 	{
 		aUrl = aUrl.replace(/^https?:\/\//, '');
 
@@ -290,13 +290,13 @@ function whereIsMyTabPopup()
 	{
 		chrome.tabs.get(aTabId, function(aTab)
 		{
-			if (aTab && !aTab.selected) {
-				chrome.tabs.update(aTabId, { selected: true });
-			}
-
 			chrome.windows.get(aTab.windowId, function(aWindow)
 			{
 				chrome.windows.update(aWindow.id, { focused: true });
+
+				if (aTab && !aTab.selected) {
+					chrome.tabs.update(aTabId, { selected: true });
+				}
 			});
 		});
 	};
