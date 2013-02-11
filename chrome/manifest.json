@@ -5,14 +5,14 @@
 	"description": "Search for title and url in currently open tabs.",
 
 	"icons": {
-		"16" : "icon16.png",
-		"48" : "icon16.png",
-		"128" : "icon16.png"
+		"16" : "media/icon16.png",
+		"48" : "media/icon16.png",
+		"128" : "media/icon16.png"
 	},
 
 	"browser_action": {
-		"default_icon" : "icon19.png",
-		"default_title": "Where is my tab",
+		"default_icon" : "media/icon19.png",
+		"default_title": "Where is my tab?",
 		"default_popup": "popup.html"
 	},
 
