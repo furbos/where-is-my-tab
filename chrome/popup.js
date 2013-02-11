@@ -11,6 +11,8 @@ function whereIsMyTabPopup()
 
 	/**
 	 * Initialize
+	 *
+	 * @return void
 	 */
 	this.initialize = function()
 	{
@@ -24,6 +26,8 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Add event listeners
+	 *
+	 * @return void
 	 */
 	this.addListeners = function()
 	{
@@ -37,6 +41,8 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Read open tabs
+	 *
+	 * @return void
 	 */
 	this.readOpenTabs = function()
 	{
@@ -51,6 +57,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Event listener for document key up
+	 *
+	 * @param KeyboardEvent aEvent
+	 * @return void
 	 */
 	this.listenerDocumentKeyUp = function(aEvent)
 	{
@@ -74,6 +83,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Event listener for keywords key up
+	 *
+	 * @param KeyboardEvent aEvent
+	 * @return void
 	 */
 	this.listenerKeywordsKeyUp = function(aEvent)
 	{
@@ -92,6 +104,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Go through results with KEY_UP & KEY_DOWN
+	 *
+	 * @param integer aDirection
+	 * @return void
 	 */
 	this.selectResult = function(aDirection)
 	{
@@ -120,7 +135,9 @@ function whereIsMyTabPopup()
 	
 	
 	/**
-	 * Highlight the result item 
+	 * Highlight the result item
+	 *
+	 * @return void
 	 */
 	this.highlightResult = function()
 	{
@@ -138,6 +155,8 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Perform actual search in all open tabs (in title & url)
+	 *
+	 * @return void
 	 */
 	this.searchForTab = function()
 	{
@@ -170,6 +189,8 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Print search results
+	 *
+	 * @return void
 	 */
 	this.printResults = function() 
 	{
@@ -188,6 +209,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Print one row in results
+	 *
+	 * @param Object aResult
+	 * @return void
 	 */
 	this.printResult = function(aResult)
 	{
@@ -224,6 +248,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Remove protocol and for some cases also trailing slash
+	 *
+	 * @param string aUrl
+	 * @return string
 	 */
 	this.cleanUrl = function(aUrl) 
 	{
@@ -239,6 +266,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Highlight the keywords in the text
+	 *
+	 * @param string aText
+	 * @return string
 	 */
 	this.hilightKeywords = function(aText)
 	{
@@ -252,6 +282,9 @@ function whereIsMyTabPopup()
 	
 	/**
 	 * Go to the selected window & tab
+	 *
+	 * @param integer aTabId
+	 * @return void
 	 */
 	this.goToTab = function(aTabId)
 	{
