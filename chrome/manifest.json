@@ -1,13 +1,13 @@
 {
-	"name": "Where is my tab",
+	"name": "Where is my tab?",
 	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Search for title and url in currently open tabs.",
 
 	"icons": {
 		"16" : "media/icon16.png",
-		"48" : "media/icon16.png",
-		"128" : "media/icon16.png"
+		"48" : "media/icon48.png",
+		"128" : "media/icon128.png"
 	},
 
 	"browser_action": {
