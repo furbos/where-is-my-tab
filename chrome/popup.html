@@ -97,31 +97,29 @@
 	
 	#results li {
 		padding: 6px;
-		border-top: 1px solid #7ea0cd;
+		border-width: 1px 1px 1px 3px;
+		border-color: #fff;
+		border-style: solid;
 	}
 	
 	#results li:first-child {
 		background-color: #fff;
-		border-top: 1px solid #fff;
+		border-color: #fff;
 	}
 	
 	#results li:nth-child(2n) {
 		background-color: #f2f6fa;
+		border-color: #f2f6fa;
 	}
 	
 	#results li:hover {
-		abackground-color: #f2f6fa;
 		cursor: pointer;
 		text-decoration: underline;
 	}
 	
 	#results li.hilight {
-		background-color: #c0c0c0;
-		color: #fff;
-	}
-	
-	#results li.hilight .url {
-		color: #fff;
+		border-color: #7ea0cd;
+		box-shadow: inset 0 0 4px #f0f0f0;
 	}
 	
 	#results li .icon {
@@ -162,7 +160,7 @@
 	</style>
 </head>
 <body>
-	<strong>Search within open tabs:</strong><br><input type="text" name="keywords" id="keywords" tabindex="1" placeholder="type title or url" />
+	<strong>Find my tab:</strong><br><input type="text" name="keywords" id="keywords" tabindex="1" placeholder="type title or url" />
 	<ol id="results"></ol>
 </body>
 </html>
