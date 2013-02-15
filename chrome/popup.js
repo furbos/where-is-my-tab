@@ -163,7 +163,7 @@ function whereIsMyTabPopup()
 		this.mResults = [];
 	
 		if (this.mKeywords.length > 0) {
-			$('keywords').style.backgroundImage = 'url("loading.gif")';
+			$('keywords').style.backgroundImage = 'url("media/loading.gif")';
 			
 			for (var i = 0; i < this.mTabs.length; i++) {
 				this.mTabs[i].keywords = 0;
@@ -174,7 +174,7 @@ function whereIsMyTabPopup()
 					}
 				}
 				
-				if (this.mTabs[i].keywords > 0) this.mResults.push(this.mTabs[i]);
+				if (this.mTabs[i].keywords == this.mKeywords.length) this.mResults.push(this.mTabs[i]);
 			}
 		}
 
@@ -297,6 +297,8 @@ function whereIsMyTabPopup()
 				if (aTab && !aTab.selected) {
 					chrome.tabs.update(aTabId, { selected: true });
 				}
+
+				window.close();
 			});
 		});
 	};
