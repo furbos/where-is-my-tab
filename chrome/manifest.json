@@ -2,7 +2,7 @@
 	"name": "Where is my tab?",
 	"version": "1.0",
 	"manifest_version": 2,
-	"description": "Search for title and url in currently open tabs.",
+	"description": "Search in the currently open tabs.",
 
 	"icons": {
 		"16" : "media/icon16.png",
