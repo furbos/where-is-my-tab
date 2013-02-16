@@ -1,13 +1,13 @@
-function whereIsMyTabPopup()
+function WhereIsMyTabPopup()
 {
 	var mThis = this;
 	
-	var mMaxResults;
-	var mSelectedIndex;
+	this.mMaxResults = 6;
+	this.mSelectedIndex = false;
 	
-	var mTabs;
-	var mResults;
-	var mKeywords = [];
+	this.mTabs = [];
+	this.mResults = [];
+	this.mKeywords = [];
 	
 
 	/**
@@ -17,9 +17,6 @@ function whereIsMyTabPopup()
 	 */
 	this.initialize = function()
 	{
-		this.mMaxResults = 6;
-		this.mSelectedIndex = false;
-		
 		this.addListeners();
 		this.readOpenTabs();
 	};
@@ -47,7 +44,7 @@ function whereIsMyTabPopup()
 	 */
 	this.readOpenTabs = function()
 	{
-		lTabs = chrome.tabs.query({ },
+		chrome.tabs.query({ },
 			function(aTabs) 
 			{
 				mThis.mTabs = aTabs;
@@ -59,7 +56,7 @@ function whereIsMyTabPopup()
 	/**
 	 * Event listener for document key up
 	 *
-	 * @param KeyboardEvent aEvent
+	 * @param aEvent
 	 * @return void
 	 */
 	this.listenerDocumentKeyUp = function(aEvent)
@@ -85,7 +82,7 @@ function whereIsMyTabPopup()
 	/**
 	 * Event listener for keywords key up
 	 *
-	 * @param KeyboardEvent aEvent
+	 * @param aEvent
 	 * @return void
 	 */
 	this.listenerKeywordsKeyUp = function(aEvent)
@@ -106,28 +103,29 @@ function whereIsMyTabPopup()
 	/**
 	 * Go through results with KEY_UP & KEY_DOWN
 	 *
-	 * @param integer aDirection
+	 * @param aDirection
 	 * @return void
 	 */
 	this.selectResult = function(aDirection)
 	{
 		if (!this.mResults || this.mResults.length == 0) return;
 		
-		lResultsPrinted = Math.min(this.mMaxResults, this.mResults.length);
-		
-		if ($('keywords').isActive()) {
+		var lResultsPrinted = Math.min(this.mMaxResults, this.mResults.length);
+		var $keywords = $('keywords');
+
+		if ($keywords.isActive()) {
 			if (aDirection == -1) {
 				this.mSelectedIndex = lResultsPrinted - 1;
 			} else {
 				this.mSelectedIndex = 0;
 			}
-			
-			$('keywords').blur();
+
+			$keywords.blur();
 		} else {
 			this.mSelectedIndex += aDirection;
 			if (this.mSelectedIndex > lResultsPrinted - 1 || this.mSelectedIndex < 0) {
 				this.mSelectedIndex = false;
-				$('keywords').focus();
+				$keywords.focus();
 			}
 		}
 		
@@ -142,7 +140,7 @@ function whereIsMyTabPopup()
 	 */
 	this.highlightResult = function()
 	{
-		lResultsPrinted = Math.min(this.mMaxResults, this.mResults.length);
+		var lResultsPrinted = Math.min(this.mMaxResults, this.mResults.length);
 		
 		for (var i = 0; i < lResultsPrinted; i++) {
 			$('result-' + this.mResults[i].id).removeClass('hilight');
@@ -162,19 +160,19 @@ function whereIsMyTabPopup()
 	this.searchForTab = function()
 	{
 		this.mResults = [];
-	
+
 		if (this.mKeywords.length > 0) {
 			$('keywords').style.backgroundImage = 'url("media/loading.gif")';
-			
+
 			for (var i = 0; i < this.mTabs.length; i++) {
 				this.mTabs[i].keywords = 0;
-				
+
 				for (var j = 0; j < this.mKeywords.length; j++) {
 					if (this.mTabs[i].title.toLowerCase().indexOf(this.mKeywords[j].toLowerCase()) != -1 || this.mTabs[i].url.toLowerCase().indexOf(this.mKeywords[j].toLowerCase()) != -1) {
 						this.mTabs[i].keywords++;
 					}
 				}
-				
+
 				if (this.mTabs[i].keywords == this.mKeywords.length) this.mResults.push(this.mTabs[i]);
 			}
 		}
@@ -211,37 +209,37 @@ function whereIsMyTabPopup()
 	/**
 	 * Print one row in results
 	 *
-	 * @param Object aResult
+	 * @param aResult
 	 * @return void
 	 */
 	this.printResult = function(aResult)
 	{
-		lLi = document.createElement('li');
+		var lLi = document.createElement('li');
 		lLi.id = "result-" + aResult.id;
 		
 		if (aResult.favIconUrl) {
-			lFavIconImg = document.createElement('img');
+			var lFavIconImg = document.createElement('img');
 			lFavIconImg.src = aResult.favIconUrl;
 			
-			lFavIcon = document.createElement('div');
+			var lFavIcon = document.createElement('div');
 			lFavIcon.className = 'icon';
 			lFavIcon.appendChild(lFavIconImg);
 			
 			lLi.appendChild(lFavIcon);
 		}
 		
-		lTitle = document.createElement('div');
+		var lTitle = document.createElement('div');
 		lTitle.className = 'title';
 		lTitle.innerHTML = this.hilightKeywords(aResult.title);
 		lLi.appendChild(lTitle);
 		
-		lUrl = document.createElement('div');
+		var lUrl = document.createElement('div');
 		lUrl.className = 'url';
 		lUrl.innerHTML = this.hilightKeywords(this.cleanUrl(aResult.url));
 		lLi.appendChild(lUrl);
 		
 		lLi.dataset.tabId = aResult.id;
-		lLi.addEventListener('click', function(aEvent) { mThis.goToTab(parseInt(this.dataset.tabId)); });
+		lLi.addEventListener('click', function() { mThis.goToTab(parseInt(this.dataset.tabId)); });
 		
 		$('results').appendChild(lLi);
 	};
@@ -250,7 +248,7 @@ function whereIsMyTabPopup()
 	/**
 	 * Remove protocol and for some cases also trailing slash
 	 *
-	 * @param string aUrl
+	 * @param aUrl
 	 * @return string
 	 */
 	this.cleanUrl = function(aUrl)
@@ -268,18 +266,18 @@ function whereIsMyTabPopup()
 	/**
 	 * Highlight the keywords in the text
 	 *
-	 * @param string aText
+	 * @param aText
 	 * @return string
 	 */
 	this.hilightKeywords = function(aText)
 	{
-		$lKeywordsEscaped = [];
+		var lKeywordsEscaped = [];
 
 		for (var i = 0; i < this.mKeywords.length; i++) {
-			$lKeywordsEscaped[i] = this.mKeywords[i].escapeForRegExp();
+			lKeywordsEscaped[i] = this.mKeywords[i].escapeForRegExp();
 		}
 
-		var lRegExp = new RegExp('(' + $lKeywordsEscaped.join('|') + ')', 'gi');
+		var lRegExp = new RegExp('(' + lKeywordsEscaped.join('|') + ')', 'gi');
 		aText = aText.replace(lRegExp, '<span>$1</span>');
 
 		return aText;
@@ -289,7 +287,7 @@ function whereIsMyTabPopup()
 	/**
 	 * Go to the selected window & tab
 	 *
-	 * @param integer aTabId
+	 * @param aTabId
 	 * @return void
 	 */
 	this.goToTab = function(aTabId)
@@ -311,5 +309,5 @@ function whereIsMyTabPopup()
 }
 
 
-var lWhereIsMyTabPopup = new whereIsMyTabPopup();
+var lWhereIsMyTabPopup = new WhereIsMyTabPopup();
 lWhereIsMyTabPopup.initialize();

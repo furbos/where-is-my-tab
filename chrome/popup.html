@@ -76,16 +76,14 @@
 	a {
 		cursor: pointer
 	}
-	
-	.clear {
-		clear: both;
+
+	label {
+		font-weight: bold;
 	}
 	
 	#keywords {
 		width: 250px;
-		background-image: none;
-		background-position: 238px;
-		background-repeat: no-repeat;
+		background: none no-repeat 238px;
 		margin: 5px 0 0 0;
 	}
 	
@@ -160,7 +158,7 @@
 	</style>
 </head>
 <body>
-	<strong>Find my tab:</strong><br><input type="text" name="keywords" id="keywords" tabindex="1" placeholder="type title or url" />
+	<label for="keywords">Find my tab:</label><br><input type="text" name="keywords" id="keywords" tabindex="1" placeholder="type title or url" />
 	<ol id="results"></ol>
 </body>
 </html>
