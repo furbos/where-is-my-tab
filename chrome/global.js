@@ -22,7 +22,7 @@ window.indexedDB      = window.indexedDB || window.webkitIndexedDB;
 /**
  * document.getElementById shortener
  *
- * @param integer aElementId
+ * @param aElementId
  * @return null|Element
  */
 var $ = function(aElementId) {
@@ -33,8 +33,8 @@ var $ = function(aElementId) {
 /**
  * Check if the array contains the item
  *
- * @param mixed aNeedle
- * @param Array aHaystack
+ * @param aNeedle
+ * @param aHaystack
  * @return boolean
  */
 var inArray = function(aNeedle, aHaystack)
@@ -50,7 +50,7 @@ var inArray = function(aNeedle, aHaystack)
 /** 
  * Remove all doubles (and empty strings) from the array
  *
- * @param Array aArray
+ * @param aArray
  * @return Array
  */
 var uniqueArray = function(aArray)
@@ -68,7 +68,7 @@ var uniqueArray = function(aArray)
 /**
  * Gets an element position (left and top)
  *
- * @param Element aElement
+ * @param aElement
  * @return Object
  */
 var getElementPosition = function(aElement)
@@ -143,15 +143,15 @@ HTMLElement.prototype.show = function()
 /**
  * Add multiple event listeners
  *
- * @param string aEvent
- * @param function aCallback
+ * @param aEvent
+ * @param aCallback
  * @return void
  */
 HTMLElement.prototype.addEventListenerOriginal = HTMLElement.prototype.addEventListener;
 HTMLElement.prototype.addEventListener = function(aEvent, aCallback) 
 {
 	if (!this.listeners) {
-		this.listeners = new Array();
+		this.listeners = [];
 	}
 	
 	this.listeners.push([aEvent, aCallback]);
@@ -202,12 +202,12 @@ HTMLElement.prototype.removeChildren = function()
 /**
  * Remove class from the element
  *
- * @param string aString
+ * @param aString
  * @return void
  */
 HTMLElement.prototype.removeClass = function(aString) 
 {
-	lRegExp = new RegExp("\\b" + aString + "\\b");
+	var lRegExp = new RegExp("\\b" + aString + "\\b");
 	this.className = this.className.replace(lRegExp, '');
 };
 
@@ -215,7 +215,7 @@ HTMLElement.prototype.removeClass = function(aString)
 /**
  * Add class to the element
  *
- * @param string aString
+ * @param aString
  * @return void
  */
 HTMLElement.prototype.addClass = function(aString) 
