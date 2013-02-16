@@ -88,6 +88,16 @@ var getElementPosition = function(aElement)
 
 
 /**
+ * Escape string for use in regexp
+ *
+ * @return String
+ */
+String.prototype.escapeForRegExp = function() {
+	return this.toString().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+};
+
+
+/**
  * Show/Hide Element
  *
  * @return void

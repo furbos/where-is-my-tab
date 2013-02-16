@@ -7,6 +7,7 @@ function whereIsMyTabPopup()
 	
 	var mTabs;
 	var mResults;
+	var mKeywords = [];
 	
 
 	/**
@@ -169,7 +170,7 @@ function whereIsMyTabPopup()
 				this.mTabs[i].keywords = 0;
 				
 				for (var j = 0; j < this.mKeywords.length; j++) {
-					if (this.mTabs[i].title.indexOf(this.mKeywords[j]) != -1 || this.mTabs[i].url.indexOf(this.mKeywords[j]) != -1) {
+					if (this.mTabs[i].title.toLowerCase().indexOf(this.mKeywords[j].toLowerCase()) != -1 || this.mTabs[i].url.toLowerCase().indexOf(this.mKeywords[j].toLowerCase()) != -1) {
 						this.mTabs[i].keywords++;
 					}
 				}
@@ -272,10 +273,15 @@ function whereIsMyTabPopup()
 	 */
 	this.hilightKeywords = function(aText)
 	{
+		$lKeywordsEscaped = [];
+
 		for (var i = 0; i < this.mKeywords.length; i++) {
-			aText = aText.replace(this.mKeywords[i], '<span>' + this.mKeywords[i] + '</span>');
+			$lKeywordsEscaped[i] = this.mKeywords[i].escapeForRegExp();
 		}
-		
+
+		var lRegExp = new RegExp('(' + $lKeywordsEscaped.join('|') + ')', 'gi');
+		aText = aText.replace(lRegExp, '<span>$1</span>');
+
 		return aText;
 	};
 	
